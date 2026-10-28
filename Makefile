@@ -44,7 +44,8 @@ uninstall:
 	sudo rm -f $(SUDOERS)
 
 dist: build
-	ditto -c -k --keepParent $(BUNDLE) $(BUILD)/$(APP)-$(VERSION).zip
+	rm -f $(BUILD)/$(APP)-$(VERSION).zip
+	ditto -c -k --norsrc --noextattr --keepParent $(BUNDLE) $(BUILD)/$(APP)-$(VERSION).zip
 
 clean:
 	rm -rf $(BUILD)
