@@ -66,3 +66,4 @@ Maintainers publish releases as follows:
 2. Move the **Unreleased** entries in `CHANGELOG.md` under the new version.
 3. Commit, then tag: `git tag -a vX.Y.Z -m "Lidless X.Y.Z"` and push the tag.
 4. Run `make dist` and attach `build/Lidless-X.Y.Z.zip` to a GitHub release for the tag.
+5. Update `version` and `sha256` in [`Casks/lidless.rb`](https://github.com/iamsaad640/homebrew-tap/blob/main/Casks/lidless.rb) in the Homebrew tap.

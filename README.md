@@ -37,6 +37,14 @@ Lidless is a tiny macOS menu bar app that switches system sleep off and on. Inst
 
 ## Installation
 
+### Homebrew
+
+```sh
+brew install --cask iamsaad640/tap/lidless
+```
+
+Then install the one-time sudo rule shown after installation (also listed under [Download a release](#download-a-release), step 3).
+
 ### Build from source
 
 ```sh
