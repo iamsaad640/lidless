@@ -3,18 +3,24 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleExecutable</key>
-    <string>SleepToggle</string>
+    <string>Lidless</string>
     <key>CFBundleIdentifier</key>
-    <string>com.saadahmed.sleeptoggle</string>
+    <string>io.github.iamsaad640.lidless</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
     <key>CFBundleName</key>
-    <string>Sleep Toggle</string>
+    <string>Lidless</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.0</string>
+    <string>1.0.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
     <key>LSMinimumSystemVersion</key>
     <string>13.0</string>
     <key>LSUIElement</key>
     <true/>
+    <key>NSHumanReadableCopyright</key>
+    <string>Copyright © 2026 Saad Ahmed. MIT License.</string>
 </dict>
 </plist>

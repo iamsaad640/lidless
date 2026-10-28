@@ -1,1 +1,0 @@
-saadahmed ALL=(root) NOPASSWD: /usr/bin/pmset disablesleep 0, /usr/bin/pmset disablesleep 1

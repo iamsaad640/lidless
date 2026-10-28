@@ -10,7 +10,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let pmRoot = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceMatching("IOPMrootDomain"))
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        // Only auto-register once, so turning it off from the menu or System Settings sticks.
+        // Register once only, so opting out from the menu or System Settings sticks.
         if !UserDefaults.standard.bool(forKey: "loginItemConfigured") {
             try? SMAppService.mainApp.register()
             UserDefaults.standard.set(true, forKey: "loginItemConfigured")
@@ -18,12 +18,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         loginItem.target = self
         menu.addItem(loginItem)
         menu.addItem(.separator())
-        menu.addItem(withTitle: "Quit Sleep Toggle", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        menu.addItem(withTitle: "Quit Lidless", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         item.button?.target = self
         item.button?.action = #selector(clicked)
         item.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
         refresh()
-        // pmset can be changed from the terminal too, so keep the icon in sync.
+        // Picks up pmset changes made outside the app.
         let timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(refresh), userInfo: nil, repeats: true)
         timer.tolerance = 10
     }
@@ -41,13 +41,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if result.status != 0 {
             let alert = NSAlert()
             alert.messageText = "Couldn't change sleep setting"
-            alert.informativeText = "sudo needs a NOPASSWD rule for pmset in /etc/sudoers.d/pmset.\n\n\(result.output)"
+            alert.informativeText = "sudo needs a NOPASSWD rule for pmset. Run `make sudoers` in the Lidless source folder.\n\n\(result.output)"
             NSApp.activate(ignoringOtherApps: true)
             alert.runModal()
             refresh()
             return
         }
-        // powerd updates the kernel flag asynchronously, so trust the successful pmset exit.
+        // powerd updates SleepDisabled asynchronously; reading it back here can return the old value.
         render(disabled: disable)
     }
 
